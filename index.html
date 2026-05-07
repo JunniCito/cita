@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Una Invitación Especial 🎬💖</title>
+  <meta name="description" content="Una invitación muy especial al cine, solo para ti." />
+
+  <!-- Google Fonts: Playfair Display + Lato + Dancing Script -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Dancing+Script:wght@400;700&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ========================================
+       CANVAS DE PARTÍCULAS (fondo)
+  ======================================== -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- ========================================
+       PANTALLA 1 — INTRO
+  ======================================== -->
+  <section id="screen-intro" class="screen active">
+
+    <!-- Cortinas de cine -->
+    <div class="curtain curtain-left"></div>
+    <div class="curtain curtain-right"></div>
+
+    <!-- Luces de cine superiores -->
+    <div class="cinema-lights">
+      <span></span><span></span><span></span><span></span>
+      <span></span><span></span><span></span><span></span>
+    </div>
+
+    <!-- Logo / branding -->
+    <div class="cinema-logo">
+      <span class="logo-icon">🎬</span>
+      <span class="logo-text">BOLUEVARD CINEMAS</span>
+    </div>
+
+    <!-- Contenido principal -->
+    <div class="intro-content">
+      <p class="intro-pre">Película especial — Solo para ti</p>
+      <h1 class="intro-title">
+        Tengo una invitación<br />
+        <em>especial</em> para ti
+        <span class="title-heart">💖</span>
+      </h1>
+      <p class="intro-sub">
+        Pronto descubrirás algo muy bonito…
+      </p>
+      <button id="btn-open" class="btn-main" aria-label="Abrir invitación">
+        <span class="btn-icon">🎟️</span>
+        <span>Abrir invitación</span>
+      </button>
+    </div>
+
+    <!-- Film strip decoration -->
+    <div class="filmstrip filmstrip-bottom">
+      <div class="film-hole"></div><div class="film-hole"></div>
+      <div class="film-hole"></div><div class="film-hole"></div>
+      <div class="film-hole"></div><div class="film-hole"></div>
+      <div class="film-hole"></div><div class="film-hole"></div>
+      <div class="film-hole"></div><div class="film-hole"></div>
+    </div>
+
+    <!-- Estrellas decorativas -->
+    <div class="stars-layer" id="stars-intro"></div>
+  </section>
+
+  <!-- ========================================
+       PANTALLA 2 — INVITACIÓN PRINCIPAL
+  ======================================== -->
+  <section id="screen-invite" class="screen">
+
+    <div class="stars-layer" id="stars-invite"></div>
+
+    <div class="invite-wrapper">
+
+      <!-- Encabezado cinematográfico -->
+      <div class="invite-header">
+        <div class="red-line"></div>
+        <p class="invite-label">Una Producción Especial</p>
+        <h2 class="invite-question">
+          ¿Quieres ir al<br />
+          <span class="highlight-cine">cine</span> conmigo?
+          <span class="question-heart">💖</span>
+        </h2>
+        <div class="red-line"></div>
+      </div>
+
+      <!-- Detalles de la cita -->
+      <div class="invite-details">
+        <div class="detail-item">
+          <span class="detail-icon">📅</span>
+          <div class="detail-text">
+            <small>Fecha</small>
+            <strong id="invite-date">Sábado, 17 de Mayo 2025</strong>
+          </div>
+        </div>
+        <div class="detail-item">
+          <span class="detail-icon">⏰</span>
+          <div class="detail-text">
+            <small>Hora</small>
+            <strong id="invite-time">7:00 PM</strong>
+          </div>
+        </div>
+        <div class="detail-item">
+          <span class="detail-icon">📍</span>
+          <div class="detail-text">
+            <small>Lugar</small>
+            <strong id="invite-place">Boluevard Cinemas</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carta romántica -->
+      <div class="love-letter">
+        <p class="letter-icon">💌</p>
+        <p class="letter-text">
+          Quiero compartir una noche bonita contigo,<br />
+          reír, abrazarte y crear otro recuerdo juntos.<br />
+          <em>Tú haces que todo sea más especial.</em>
+        </p>
+        <p class="letter-sign">— Con todo mi amor 💖</p>
+      </div>
+
+      <!-- Cuenta regresiva -->
+      <div class="countdown-section">
+        <p class="countdown-label">Faltan…</p>
+        <div class="countdown-boxes">
+          <div class="count-box"><span id="cd-days">00</span><small>días</small></div>
+          <div class="count-sep">:</div>
+          <div class="count-box"><span id="cd-hours">00</span><small>horas</small></div>
+          <div class="count-sep">:</div>
+          <div class="count-box"><span id="cd-mins">00</span><small>min</small></div>
+          <div class="count-sep">:</div>
+          <div class="count-box"><span id="cd-secs">00</span><small>seg</small></div>
+        </div>
+      </div>
+
+      <!-- Botón a la entrada -->
+      <button id="btn-ticket" class="btn-main btn-pink" aria-label="Ver mi entrada">
+        <span class="btn-icon">🎟️</span>
+        <span>Ver mi entrada de cine</span>
+      </button>
+
+    </div>
+  </section>
+
+  <!-- ========================================
+       PANTALLA 3 — TICKET
+  ======================================== -->
+  <section id="screen-ticket" class="screen">
+
+    <div class="stars-layer" id="stars-ticket"></div>
+
+    <div class="ticket-wrapper">
+
+      <p class="ticket-pre">Tu entrada de cine ✨</p>
+
+      <!-- Ticket premium -->
+      <div class="ticket" id="ticket-card">
+
+        <!-- Parte izquierda del ticket -->
+        <div class="ticket-main">
+
+          <div class="ticket-cinema-name">🎬 BOLUEVARD CINEMAS</div>
+
+          <div class="ticket-movie" id="ticket-movie">A Todo Gas: Las Estrellas</div>
+          <p class="ticket-tagline">Una Noche Para Recordar</p>
+
+          <div class="ticket-info-grid">
+            <div class="ti-item">
+              <small>NOMBRE</small>
+              <strong id="ticket-name">Mi Amor 💖</strong>
+            </div>
+            <div class="ti-item">
+              <small>FECHA</small>
+              <strong id="ticket-date2">17 Mayo 2025</strong>
+            </div>
+            <div class="ti-item">
+              <small>HORA</small>
+              <strong id="ticket-time2">7:00 PM</strong>
+            </div>
+            <div class="ti-item">
+              <small>SALA</small>
+              <strong id="ticket-sala">Sala 3 — VIP</strong>
+            </div>
+            <div class="ti-item">
+              <small>ASIENTO</small>
+              <strong id="ticket-seat">F7 — F8</strong>
+            </div>
+            <div class="ti-item">
+              <small>TIPO</small>
+              <strong>Comodos</strong>
+            </div>
+          </div>
+
+          <div class="ticket-barcode">
+            <div class="barcode-lines" aria-hidden="true">
+              <!-- Barras generadas por JS -->
+            </div>
+            <small class="barcode-num">BLV-2025-05-17-F7F8</small>
+          </div>
+        </div>
+
+        <!-- Separador perforado -->
+        <div class="ticket-tear">
+          <div class="tear-hole top"></div>
+          <div class="tear-dashes"></div>
+          <div class="tear-hole bottom"></div>
+        </div>
+
+        <!-- Stub derecho -->
+        <div class="ticket-stub">
+          <div class="stub-cinema">🎬</div>
+          <div class="stub-text">BOLUEVARD</div>
+
+          <!-- QR decorativo falso -->
+          <div class="qr-box" aria-label="Código QR decorativo">
+            <div class="qr-inner" id="qr-pattern"></div>
+          </div>
+
+          <div class="stub-info">
+            <small>SALA</small>
+            <strong id="stub-sala">3 VIP</strong>
+          </div>
+          <div class="stub-info">
+            <small>ASIENTO</small>
+            <strong id="stub-seat">F7-F8</strong>
+          </div>
+
+          <div class="stub-heart">💖</div>
+        </div>
+      </div>
+
+      <!-- Botones de respuesta -->
+      <div class="answer-section">
+        <p class="answer-question">¿Cuál es tu respuesta? 🥺</p>
+        <div class="answer-buttons">
+          <button id="btn-yes1" class="btn-answer btn-yes" aria-label="Sí quiero ir">
+            Sí, quiero 💖
+          </button>
+          <button id="btn-yes2" class="btn-answer btn-yes2" aria-label="Obviamente sí">
+            Obvio sí 🎬
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ========================================
+       PANTALLA 4 — RESPUESTA "SÍ"
+  ======================================== -->
+  <section id="screen-yes" class="screen">
+
+    <div class="stars-layer" id="stars-yes"></div>
+
+    <div class="yes-wrapper">
+      <div class="yes-emoji">🥰</div>
+      <h2 class="yes-title">Sabía que dirías que sí</h2>
+      <p class="yes-sub">
+        No podía imaginar esta noche con nadie más. <br />
+        Voy a hacer que sea perfecta para ti. <em>Te amo.</em>
+      </p>
+      <div class="yes-details">
+        <span>📅 <strong id="yes-date">17 Mayo</strong></span>
+        <span>⏰ <strong id="yes-time">7:00 PM</strong></span>
+        <span>📍 <strong id="yes-place">Boluevard</strong></span>
+      </div>
+      <p class="yes-emoji-row">💖 🎬 🍿 🌟 💖</p>
+      <button id="btn-restart" class="btn-main btn-ghost" aria-label="Volver al inicio">
+        Ver otra vez 🔁
+      </button>
+    </div>
+  </section>
+
+  <!-- ========================================
+       CONTENEDOR DE CORAZONES FLOTANTES
+  ======================================== -->
+  <div id="hearts-container" aria-hidden="true"></div>
+
+  <!-- ========================================
+       OVERLAY DE TRANSICIÓN CINEMÁTICA
+  ======================================== -->
+  <div id="cinematic-overlay" aria-hidden="true">
+    <div class="cine-bar top"></div>
+    <div class="cine-bar bottom"></div>
+    <div class="projector-beam"></div>
+  </div>
+
+  <!-- ========================================
+       AUDIO CONTROL (botón flotante)
+  ======================================== -->
+  <button id="btn-audio" class="btn-audio" title="Música" aria-label="Activar / desactivar música">
+    🎵
+  </button>
+
+  <!-- Audio de fondo (suave, instrumental) -->
+  <audio id="bg-music" loop>
+    <!-- Puedes cambiar el src a cualquier mp3 romántico -->
+    <source src="music.mp3" type="audio/mpeg" />
+  </audio>
+
+  <script src="script.js"></script>
+</body>
+</html>
